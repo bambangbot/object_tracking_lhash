@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import time
 
-
 '''
 This function required for mouse callback function.
 The funtion is used to draw box around object based on mouse click
@@ -60,15 +59,16 @@ def hammingDistance(x, y):
          ans+= not(b1==b2)
       return ans
 
-
+'''
+Main Function of the program
+'''
 #capture video
-cap = cv2.VideoCapture('highway4.avi')
+cap = cv2.VideoCapture('datasets/highway4.avi')
 cv2.namedWindow(winname='Hashing')
 cv2.setMouseCallback('Hashing', draw_rectangle)
 
 #initiate condition of first frame of video
 firstFrame = True
-
 
 while True: 
     #reset all callback variables
@@ -84,7 +84,7 @@ while True:
         if topLeft_clicked: 
             cv2.circle(frame, center=pt1, radius=1, color=(0,255,0), thickness=-1)
         if topLeft_clicked and bottomRight_clicked: 
-            cv2.rectangle(frame, pt1, pt2, (0,255,0), 2)     
+            cv2.rectangle(frame, pt1, pt2, (0,255,0), 1)     
         refPt=[]
         refPt.append(pt1)
         refPt.append(pt2)
@@ -136,22 +136,17 @@ while True:
                 time.sleep(0.025)
                 
             key2 = cv2.waitKey(1) or 0xff
-            #press "P" to continue the video
+            #press "P" to continue video
             if key2 == ord('p'):
-                # print(refPt_nextframe)
-                # print(distance)
-                print(min(distance))
-                print(distance.index(min(distance)))
                 t=list(refPt_nextframe_stack[distance.index(min(distance))])
-                print(t)
-                print("area:",area_detected)
-                #show the re-identitication image
+                cv2.rectangle(clone, t[0], t[1], (0, 255, 0), 1)
                 cv2.imshow("Re-Identification", clone)
                 cv2.waitKey(0)
                 break
 
+    #show the main window
     cv2.imshow('Hashing', frame)
-
+    #press "Q" to exit
     if key == ord('q'):
         break
 
