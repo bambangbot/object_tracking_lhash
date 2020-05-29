@@ -10,7 +10,7 @@ The technique purpose is comparing hash code generated from laplaced based image
 ## Screenshot
 ![Laplace Hash Object Tracking](Result/result.gif)
 
-##Getting Started
+## Getting Started
 The project is developed using Python and OpenCV and tested under MacOS.
 
 ### Prequisites
