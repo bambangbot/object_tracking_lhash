@@ -45,4 +45,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* pyimagesearch.com for the Sliding Window program
+* [pyimagesearch](https://pyimagesearch.com) for the Sliding Window program
