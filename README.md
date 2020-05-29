@@ -5,7 +5,7 @@ Laplace based perceptual hashing for object tracking using OpenCV
 This project is Assignment for Digital Image Processing (ENGR7761) topic at Flinders University
 
 ### Laplace Hash Technique
-The technique purpose is comparing hash code generated from laplaced based image processing using hamming distance. The less the distance between two codes means the image is similar.
+The technique purpose is comparing hash code generated from laplaced based image processing using hamming distance. The less the distance between two codes means the image is similar. The details of laplace hash technique used in this project is based on this [paper](https://doi.org/10.1007/s11042-016-3723-5)
 
 ## Screenshot
 ![Laplace Hash Object Tracking](Result/result.gif)
