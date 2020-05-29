@@ -23,7 +23,7 @@ pip install opencv-python
 ```
 
 ## Running the App
-To run the app head to hash.py file and download this [datasets](https://flinders-my.sharepoint.com/:f:/g/personal/pray0008_flinders_edu_au/Ejrv8BzD3RxIiOpqVr47Yu0B7guroObn_hfJlpLIeFvUJA?e=xZe1e5)
+To run the app head to hash.py file and download this [dataset](https://flinders-my.sharepoint.com/:f:/g/personal/pray0008_flinders_edu_au/Ejrv8BzD3RxIiOpqVr47Yu0B7guroObn_hfJlpLIeFvUJA?e=xZe1e5)
 
 Simply run the app by typing:
 ```
