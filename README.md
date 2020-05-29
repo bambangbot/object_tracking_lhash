@@ -1,2 +1,9 @@
-# object_tracking_lhash
+# Project Title
 Laplace based perceptual hashing for object tracking using OpenCV
+
+## Motivation
+This project is developed as Assignment for Digital Image Processing (ENGR7761) at Flinders University
+
+## Screenshot
+
+
