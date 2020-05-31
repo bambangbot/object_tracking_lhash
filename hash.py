@@ -86,7 +86,7 @@ def hammingDistance(x, y):
 Main Function of the program
 '''
 #capture video based on defined path/location of dataset
-cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway4.avi')
+cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway2.avi')
 cv2.namedWindow(winname='Hashing')
 cv2.setMouseCallback('Hashing', draw_rectangle)
 
