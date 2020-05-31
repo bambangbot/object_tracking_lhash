@@ -9,6 +9,8 @@ The technique purpose is comparing hash code generated from laplaced based image
 
 ## Screenshot
 ![Laplace Hash Object Tracking](Result/result.gif)
+![Laplace Hash Object Tracking](Result/Result.png)
+
 
 ## Getting Started
 The project is developed using Python and OpenCV and tested under MacOS.
@@ -47,4 +49,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* [pyimagesearch](https://pyimagesearch.com) for the Sliding Window program
+* [pyimagesearch](https://pyimagesearch.com) for the Sliding Window and 64-bit binary conversion program
