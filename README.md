@@ -33,6 +33,8 @@ python hash.py
 ## Tests
 OpenCV window will pop up. Draw rectangle on object in the first frame by click on the top left point and right bottom point  around the object. Press "C" to continue the the frame. To track object in the next frame, press "P" to pause the video and draw rectangle around object. Mini window will pop up soon as the sliding window technique is finished track the object.
 
+In this project a qualitative comparison is conducted between laplace hashing method, perceptual hashing method and average mean hashing method.
+
 ## Authors
 
 * **Rezka Bunaiya Prayudha**
