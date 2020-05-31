@@ -38,6 +38,29 @@ def lhash(image):
     # cv2.imshow('frame',binary)
     # cv2.waitKey(1)
     return sum([2 ** i for (i, v) in enumerate(binary.flatten()) if v])
+
+def phash(image):
+    """
+    Perceptual Based Hash function is developed to make qualitative comparison 
+    with Laplace hash function
+    """
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    resize_gray = cv2.resize(gray,(8,8))
+    dct=cv2.dct(np.float32(resize_gray))
+    dct_avg=np.mean(dct)
+    result_array=(dct < dct_avg)*dct
+    return sum([2 ** i for (i, v) in enumerate(result_array.flatten()) if v])
+
+def ahash(image):
+    """
+    Average Based Hash function is developed to make qualitative comparison 
+    with Laplace hash function
+    """
+    resize_image= cv2.resize(image,(8,8))
+    gray_result = cv2.cvtColor(resize_image, cv2.COLOR_BGR2GRAY)
+    gray_avg=int(np.mean(gray_result))
+    ret,binary_mean = cv2.threshold(gray_result,127,255,gray_avg)
+    return sum([2 ** i for (i, v) in enumerate(binary_mean.flatten()) if v])
 '''
 Sliding Window function is used to perform computation search 
 in frame based on window size
@@ -63,7 +86,7 @@ def hammingDistance(x, y):
 Main Function of the program
 '''
 #capture video
-cap = cv2.VideoCapture('datasets/highway4.avi')
+cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway2.avi')
 cv2.namedWindow(winname='Hashing')
 cv2.setMouseCallback('Hashing', draw_rectangle)
 
@@ -101,6 +124,7 @@ while True:
     key=cv2.waitKey(100) &0xFF
     #press "P" to pause the video and capture object in the current frame
     if key == ord('p'):
+        print('frame number:',cap.get(cv2.CAP_PROP_POS_FRAMES)) #print current frame number
         while True:
             cv2.imshow('Hashing', frame)
             if topLeft_clicked: 
@@ -115,7 +139,9 @@ while True:
             #Define sliding window size
             w_width=48
             w_height=48
-            distance=[]
+            distance_lhash=[]
+            distance_phash=[]
+            distance_ahash=[]
             refPt_nextframe_stack=[]
             
             #start the sliding windows search
@@ -130,16 +156,27 @@ while True:
                 roi_2=clone[refPt_nextframe[0][1]:refPt_nextframe[1][1], refPt_nextframe[0][0]:refPt_nextframe[1][0]]
                 #convert the image from first frame and current frame to hash code
                 #calculate the hamming distance
-                result=hammingDistance(lhash(roi_firstframe),lhash(roi_2))
-                refPt_nextframe_stack.append(((x,y),(x + w_width, y + w_height)))
-                distance.append(result)          
+                result_lhash=hammingDistance(lhash(roi_firstframe),lhash(roi_2))
+                result_phash=hammingDistance(phash(roi_firstframe),phash(roi_2))
+                result_ahash=hammingDistance(ahash(roi_firstframe),ahash(roi_2))
+                distance_lhash.append(result_lhash)
+                distance_phash.append(result_phash)
+                distance_ahash.append(result_ahash)       
+
+                refPt_nextframe_stack.append(((x,y),(x + w_width, y + w_height)))   
                 time.sleep(0.025)
                 
             key2 = cv2.waitKey(1) or 0xff
             #press "P" to continue video
             if key2 == ord('p'):
-                t=list(refPt_nextframe_stack[distance.index(min(distance))])
-                cv2.rectangle(clone, t[0], t[1], (0, 255, 0), 1)
+                rectangle_track_lhash=list(refPt_nextframe_stack[distance_lhash.index(min(distance_lhash))])
+                rectangle_track_phash=list(refPt_nextframe_stack[distance_phash.index(min(distance_phash))])
+                rectangle_track_ahash=list(refPt_nextframe_stack[distance_ahash.index(min(distance_ahash))])
+                
+                #draw rectangle
+                cv2.rectangle(clone, rectangle_track_lhash[0], rectangle_track_lhash[1], (0, 255, 0), 1) #green for lhash
+                cv2.rectangle(clone, rectangle_track_phash[0], rectangle_track_phash[1], (255, 0, 0), 1) #red for phash
+                cv2.rectangle(clone, rectangle_track_ahash[0], rectangle_track_ahash[1], (0, 0, 255), 1) #blue for ahash
                 cv2.imshow("Re-Identification", clone)
                 cv2.waitKey(0)
                 break
