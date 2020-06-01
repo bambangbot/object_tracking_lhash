@@ -1,6 +1,17 @@
 import cv2
 import numpy as np
 import time
+import argparse
+
+"""
+Construct Argument Parser
+"""
+ap = argparse.ArgumentParser()
+ap.add_argument("-v", "--video", required=True,
+	help="path to input image")
+args = vars(ap.parse_args())
+
+
 
 '''
 This function required for mouse callback function.
@@ -84,7 +95,7 @@ def hammingDistance(x, y):
 Main Function of the program
 '''
 #capture video based on defined path/location of dataset
-cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway2.avi')
+cap = cv2.VideoCapture(args["video"])
 cv2.namedWindow('Hashing',cv2.WINDOW_NORMAL)
 # cv2.resizeWindow('Hashing', 200,200)
 cv2.setMouseCallback('Hashing', draw_rectangle)
