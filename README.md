@@ -29,7 +29,7 @@ To run the app head to hash.py file and download this [dataset](https://flinders
 
 Simply run the app by typing:
 ```
-python hash.py
+python hash.py --video datasets/highway.AVI
 ```
 
 ## Tests
