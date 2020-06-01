@@ -86,9 +86,9 @@ This function is used to compute hamming distance between two hash code
 def hammingDistance(x, y):
       ans = 0
       for i in range(63,-1,-1):
-         b1= x>>i&1
-         b2 = y>>i&1
-         ans+= not(b1==b2)
+         h1= x>>i&1
+         h2 = y>>i&1
+         ans+= not(h1==h2)
       return ans
 
 '''
