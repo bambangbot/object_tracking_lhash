@@ -32,11 +32,9 @@ Laplace operator is used to enhance the intensities of edge.
 def lhash(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     resize_gray = cv2.resize(gray,(8,8))
-    laplacian = cv2.Laplacian(gray,cv2.CV_64F)
+    laplacian = cv2.Laplacian(resize_gray,cv2.CV_64F)
     abs_laplacian=cv2.convertScaleAbs(laplacian)
-    ret,binary = cv2.threshold(resize_gray,127,255,cv2.THRESH_BINARY)
-    # cv2.imshow('frame',binary)
-    # cv2.waitKey(1)
+    ret,binary = cv2.threshold(abs_laplacian,127,255,cv2.THRESH_BINARY)
     return sum([2 ** i for (i, v) in enumerate(binary.flatten()) if v])
 
 def phash(image):
@@ -86,7 +84,7 @@ def hammingDistance(x, y):
 Main Function of the program
 '''
 #capture video based on defined path/location of dataset
-cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway2.avi')
+cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway4.avi')
 cv2.namedWindow(winname='Hashing')
 cv2.setMouseCallback('Hashing', draw_rectangle)
 
