@@ -57,7 +57,7 @@ def ahash(image):
     resize_image= cv2.resize(image,(8,8))
     gray_result = cv2.cvtColor(resize_image, cv2.COLOR_BGR2GRAY)
     gray_avg=int(np.mean(gray_result))
-    ret,binary_mean = cv2.threshold(gray_result,127,255,gray_avg)
+    ret,binary_mean = cv2.threshold(gray_result,127,255,gray_avg,cv2.THRESH_BINARY)
     return sum([2 ** i for (i, v) in enumerate(binary_mean.flatten()) if v])
 '''
 Sliding Window function is used to perform computation search 
@@ -84,9 +84,11 @@ def hammingDistance(x, y):
 Main Function of the program
 '''
 #capture video based on defined path/location of dataset
-cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway4.avi')
-cv2.namedWindow(winname='Hashing')
+cap = cv2.VideoCapture('/Users/rezkaprayudha/Documents/OneDrive - Flinders/Flinders MME S3/Digital Image Processing/Assignment/Project/datasets/highway2.avi')
+cv2.namedWindow('Hashing',cv2.WINDOW_NORMAL)
+# cv2.resizeWindow('Hashing', 200,200)
 cv2.setMouseCallback('Hashing', draw_rectangle)
+
 
 #initiate condition of first frame of video
 firstFrame = True
@@ -135,8 +137,8 @@ while True:
             roi_nextframe=frame[refPt[0][1]:refPt[1][1], refPt[0][0]:refPt[1][0]]
 
             #Define sliding window size
-            w_width=48
-            w_height=48
+            w_width=32
+            w_height=32
             distance_lhash=[]
             distance_phash=[]
             distance_ahash=[]
@@ -173,8 +175,8 @@ while True:
                 
                 #draw rectangle
                 cv2.rectangle(clone, rectangle_track_lhash[0], rectangle_track_lhash[1], (0, 255, 0), 1) #green for lhash
-                cv2.rectangle(clone, rectangle_track_phash[0], rectangle_track_phash[1], (255, 0, 0), 1) #red for phash
-                cv2.rectangle(clone, rectangle_track_ahash[0], rectangle_track_ahash[1], (0, 0, 255), 1) #blue for ahash
+                cv2.rectangle(clone, rectangle_track_phash[0], rectangle_track_phash[1], (255, 0, 0), 1) #blue for phash
+                cv2.rectangle(clone, rectangle_track_ahash[0], rectangle_track_ahash[1], (0, 0, 255), 1) #red for ahash
                 cv2.imshow("Re-Identification", clone)
                 cv2.waitKey(0)
                 break
