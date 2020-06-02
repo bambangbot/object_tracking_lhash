@@ -126,10 +126,6 @@ while True:
         #press "C" to continue to the next frame
         if cv2.waitKey(1) &0xFF == ord('c'):
             firstFrame = False     
-            #cv2.imwrite('first_frame.jpg', roi_firstframe)
-            #img = cv2.imread('first_frame.jpg')
-            #print(type(lhash(roi_firstframe)))
-            #print(lhash(roi_firstframe))
             break
     
     key=cv2.waitKey(100) &0xFF
