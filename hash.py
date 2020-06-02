@@ -131,7 +131,7 @@ while True:
             #print(type(lhash(roi_firstframe)))
             #print(lhash(roi_firstframe))
             break
-
+    
     key=cv2.waitKey(100) &0xFF
     #press "P" to pause the video and capture object in the current frame
     if key == ord('p'):
