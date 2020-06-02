@@ -186,8 +186,8 @@ while True:
                 
                 #draw rectangle
                 cv2.rectangle(clone, rectangle_track_lhash[0], rectangle_track_lhash[1], (0, 255, 0), 1) #green for lhash
-                cv2.rectangle(clone, rectangle_track_phash[0], rectangle_track_phash[1], (255, 0, 0), 1) #blue for phash
-                cv2.rectangle(clone, rectangle_track_ahash[0], rectangle_track_ahash[1], (0, 0, 255), 1) #red for ahash
+                cv2.rectangle(clone, rectangle_track_phash[0], rectangle_track_phash[1], (0, 0, 255), 1) #red for phash
+                cv2.rectangle(clone, rectangle_track_ahash[0], rectangle_track_ahash[1], (255, 0, 0), 1) #blue for ahash
                 cv2.imshow("Re-Identification", clone)
                 cv2.waitKey(0)
                 break
