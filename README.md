@@ -37,7 +37,7 @@ OpenCV window will pop up. Draw rectangle on object in the first frame by click 
 
 In this project a qualitative comparison is conducted between laplace hashing method, perceptual hashing method and average mean hashing method.
 
-## Authors
+## Author
 
 * **Rezka Bunaiya Prayudha**
 
